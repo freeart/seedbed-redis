@@ -1,0 +1,22 @@
+{
+  "name": "seedbed-redis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freeart/seedbed-redis.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/freeart/seedbed-redis/issues"
+  },
+  "homepage": "https://github.com/freeart/seedbed-redis#readme",
+  "dependencies": {
+    "redis": "^2.8.0"
+  }
+}
