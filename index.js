@@ -4,7 +4,7 @@ const assert = require('assert'),
 module.exports = function () {
 	assert(!this.redis, "field exists")
 
-	this.redis = redis.createClient(Object.assign(this.config.get("redis.connection"), {
+	this.redis = redis.createClient(Object.assign({
 		retry_strategy: function (options) {
 			if (options.error && options.error.code === 'ECONNREFUSED') {
 				// End reconnecting on a specific error and flush all commands with
@@ -23,7 +23,15 @@ module.exports = function () {
 			// reconnect after
 			return Math.min(options.attempt * 100, 3000);
 		}
-	}));
+	}, this.config.get("redis")));
 
-	return Promise.resolve();
+	this.redis.on("error", function (err) {
+		console.error(err);
+	});
+
+	return new Promise((resolve) => {
+		this.redis.on("ready", () => {
+			resolve();
+		});
+	})
 }
