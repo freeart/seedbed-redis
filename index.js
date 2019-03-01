@@ -26,7 +26,7 @@ module.exports = function () {
 			}
 		}, this.config.get("redis")));
 	}
-	this.redis = this.getInstance()
+	this.redis = this.getRedisInstance()
 
 	this.redis.on("error", function (err) {
 		console.error(err);
